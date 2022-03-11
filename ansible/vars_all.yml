@@ -5,7 +5,7 @@ vars: &defaultMartVars
   OOZIE_APP_PATH: "/oozie-app/salesntwrk/COREDEV/DataMartIlFGp/oozie/workflow.xml"
   WF_NAME: "custom_salesntwrk_gp_integr_inn_individuals_features"
   CTL_ENTITY_ID: "926013630"
-  APP_ID: "dmrtgpinn-svd-4b87-a5c1-9049c44a6784"
+  APP_ID: "dmrtgpiif-svd-4961-a8fa-defc9084e165"
   LOGSTASH_URL: "http://127.0.0.1:44441"
   PATH_TO_LOG_IN_HDFS: "/tmp/custom_salesntwrk_datamart_quantity_staff_delete_logs/log.log"
   MAIN_PY: "main.py"
