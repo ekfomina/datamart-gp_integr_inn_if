@@ -7,7 +7,7 @@ vars: &defaultMartVars
   CTL_ENTITY_ID: "926013630"
   APP_ID: "dmrtgpiif-svd-4961-a8fa-defc9084e165"
   LOGSTASH_URL: "http://127.0.0.1:44441"
-  PATH_TO_LOG_IN_HDFS: "/tmp/custom_salesntwrk_datamart_quantity_staff_delete_logs/log.log"
+  PATH_TO_LOG_IN_HDFS: "/tmp/custom_salesntwrk_gp_integr_inn_individuals_features/log.log"
   MAIN_PY: "main.py"
   ETL_SRC_TABLE_1: "custom_salesntwrk_gp_integr.uzp_data_payroll_m"
   ETL_SRC_DIR_1: "/data/custom/salesntwrk/gp_integr/pa/uzp_data_payroll_m/"
