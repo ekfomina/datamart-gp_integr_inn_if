@@ -9,7 +9,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS custom_salesntwrk_ul_profile.uzp_data_payrol
     ,src_loading_id bigint
     ,ctl_loading	bigint
 
-
 partitioned by (ctl_validfrom timestamp)
 stored as parquet
 LOCATION '/data/custom/salesntwrk/ul_profile/pa/uzp_data_payroll_m';
