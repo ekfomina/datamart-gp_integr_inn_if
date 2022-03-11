@@ -1,0 +1,77 @@
+<workflow-app xmlns="uri:oozie:workflow:0.4" name="${wf_name}">
+   <global>
+        <job-tracker>${jobTracker}</job-tracker>
+        <name-node>${nameNode}</name-node>
+        <configuration>
+            <property>
+                <name>mapred.job.queue.name</name>
+                <value>${wf:conf(y_queue)}</value>
+            </property>
+            <property>
+                <name>oozie.action.max.output.data</name>
+                <value>3000000</value>
+                <description>
+                    Max size of Oozie Java Action output buffer
+                </description>
+            </property>
+        </configuration>
+   </global>
+
+    <start to='main'/>
+
+    <action name='main'>
+        <shell xmlns="uri:oozie:shell-action:0.3">
+            <exec>./wf_main.sh</exec>
+
+            <env-var>CTL=${ctl}</env-var>
+            <env-var>USER_NAME=${wf:conf('user.name')}</env-var>
+            <env-var>YARN_QUEUE=${wf:conf('y_queue')}</env-var>
+            <env-var>CTL_ENTITY_ID=${ctl_entity_id}</env-var>
+            <env-var>LOADING_ID=${wf:conf('loading_id')}</env-var>
+            <env-var>PATH_TO_KEYTAB=${wf:conf('kerb_keytab')}</env-var>
+            <env-var>PRINCIPAL=${wf:conf('kerb_principal')}</env-var>
+            <env-var>REALM=${wf:conf('kerb_domain')}</env-var>
+            <env-var>NAME_NODE=${wf:conf('nameNode')}</env-var>
+            <env-var>OOZIE_PATH=${wf:conf('oozie_path')}</env-var>
+            <env-var>ETL_FORCE_LOAD=${wf:conf('etl_force_load')}</env-var>
+            <env-var>ETL_SRC_TABLE_1=${wf:conf('ETL_SRC_TABLE_1')}</env-var>
+            <env-var>ETL_SRC_DIR_1=${wf:conf('ETL_SRC_DIR_1')}</env-var>
+            <env-var>ETL_PA_TABLE_1=${wf:conf('etl_pa_table_1')}</env-var>
+            <env-var>ETL_PA_DIR_1=${wf:conf('etl_pa_dir_1')}</env-var>
+            <env-var>ETL_SRC_TABLE_2=${wf:conf('ETL_SRC_TABLE_2')}</env-var>
+            <env-var>ETL_SRC_DIR_2=${wf:conf('ETL_SRC_DIR_2')}</env-var>
+            <env-var>ETL_PA_TABLE_2=${wf:conf('etl_pa_table_2')}</env-var>
+            <env-var>ETL_PA_DIR_2=${wf:conf('etl_pa_dir_2')}</env-var>
+            <env-var>FAKE_LOADING=${wf:conf('fake_loading')}</env-var>
+            <env-var>APP_ID=${wf:conf('app_id')}</env-var>
+            <env-var>LOGSTASH_URL=${wf:conf('logstash_url')}</env-var>
+            <env-var>PATH_TO_LOG_IN_HDFS=${wf:conf('path_to_log_in_hdfs')}</env-var>
+
+
+            <file>wf_main.sh#wf_main.sh</file>
+            <file>${kerb_keytab}</file>
+        </shell>
+        <ok to="End" />
+        <error to="abort_wf"/>
+    </action>
+
+    <action name="abort_wf">
+        <shell xmlns="uri:oozie:shell-action:0.3">
+            <exec>./killer.sh</exec>
+
+            <env-var>CTL=${ctl}</env-var>
+            <env-var>LOADING_ID=${wf:conf('loading_id')}</env-var>
+
+            <file>killer.sh#killer.sh</file>
+        </shell>
+
+        <ok to="Kill_Error"/>
+        <error to="Kill_Error"/>
+    </action>
+
+    <kill name="Kill_Error">
+        <message>Workflow failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+
+    <end name="End"/>
+</workflow-app>

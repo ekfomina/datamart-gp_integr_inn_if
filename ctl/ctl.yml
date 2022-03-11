@@ -1,0 +1,137 @@
+categories:
+  - category:
+      id: -1
+      name: 'salesntwrk/umiid/custom'
+entities:
+  - entity:
+      id: 926000000
+      name: "Прикладные данные блока Сеть Продаж"
+      path: "custom/salesntwrk"
+      storage: "HDFS"
+      parent-id: 900000000
+  - entity:
+      id: 926010000
+      name: "УМиИД"
+      path: "custom/salesntwrk/umiid"
+      storage: "HDFS"
+      parent-id: 926000000
+  - entity:
+      id: 926013600
+      name: "УМиИД. Витрина. ul_profile"
+      path: "custom/salesntwrk/ul_profile/pa/"
+      storage: "HDFS"
+      parent-id: 926010000
+  - entity:
+      id: 926013630
+      name: "УМиИД. Витрина. inn_individuals_features_gp"
+      path: "custom/salesntwrk/gp_integr/pa/"
+      storage: "HDFS"
+      parent-id: 926013600
+
+workflows:
+    - monitoring:
+        name: "{{WF_NAME}}"
+        profile: "{{PROFILE}}"
+        singleLoading: true
+        killyarnjobonerror: false
+        category: "salesntwrk/umiid/custom"
+        type: principal
+        orchestrator: oozie
+        schedule_params:
+            eventAwaitStrategy: "or"
+            entities:
+                - entity:
+                      id: 926010830
+                      statisticId: 2
+                      active: true
+                      profile: "{{PROFILE}}"
+        init_locks:
+          checks:
+            - check:
+                entity_id: 926013630
+                lock: READ
+                lock_group: INIT
+            - check:
+                entity_id: 926013630
+                lock: WRITE
+                lock_group: INIT
+          sets:
+            - set:
+                entity_id: 926013630
+                lock: READ
+                estimate: 30
+                lock_group: INIT
+            - set:
+                entity_id: 926013630
+                lock: WRITE
+                estimate: 30
+                lock_group: INIT
+        params:
+            - param:
+                name: ctl_entity_id
+                prior_value: "{{CTL_ENTITY_ID}}"
+            - param:
+                name: kerb_domain
+                prior_value: "{{REALM}}"
+            - param:
+                name: kerb_keytab
+                prior_value: "{{KERB_KEYTAB}}"
+            - param:
+                name: kerb_principal
+                prior_value: "{{KERB_PRINCIPAL}}"
+            - param:
+                name: oozie.wf.application.path
+                prior_value: "{{OOZIE_APP_PATH}}"
+            - param:
+                name: oozie_path
+                prior_value: "{{OOZIE_PATH}}"
+            - param:
+                name: user.name
+                prior_value: "{{USER_NAME}}"
+            - param:
+                name: wf_name
+                prior_value: "{{WF_NAME}}"
+            - param:
+                name: y_queue
+                prior_value: "{{YARN_QUEUE}}"
+            - param:
+                name: etl_force_load
+                prior_value: "0"
+            - param:
+                name: ETL_SRC_TABLE_1
+                prior_value: "{{ETL_SRC_TABLE_1}}"
+            - param:
+                name: ETL_SRC_DIR_1
+                prior_value: "{{ETL_SRC_DIR_1}}"
+            - param:
+                name: etl_pa_table_1
+                prior_value: "{{ETL_PA_TABLE_1}}"
+            - param:
+                name: etl_pa_dir_1
+                prior_value: "{{ETL_PA_DIR_1}}"
+            - param:
+                name: ETL_SRC_TABLE_2
+                prior_value: "{{ETL_SRC_TABLE_2}}"
+            - param:
+                name: ETL_SRC_DIR_2
+                prior_value: "{{ETL_SRC_DIR_2}}"
+            - param:
+                name: etl_pa_table_2
+                prior_value: "{{ETL_PA_TABLE_2}}"
+            - param:
+                name: etl_pa_dir_2
+                prior_value: "{{ETL_PA_DIR_2}}"
+            - param:
+                name: app_id
+                prior_value: "{{APP_ID}}"
+            - param:
+                name: logstash_url
+                prior_value: "{{LOGSTASH_URL}}"
+            - param:
+                name: path_to_log_in_hdfs
+                prior_value: "{{PATH_TO_LOG_IN_HDFS}}"
+            - param:
+                name: fake_loading
+                prior_value: "{{FAKE_LOADING}}"
+
+

@@ -1,0 +1,65 @@
+{
+  "version": "0.0.1",
+  "build": "none",
+  "type": "oozie",
+  "configure_item": "CI02720477_AiPlatformUmiid",
+  "block": "salesntwrk",
+  "datamart_group": "COREDEV",
+  "datamart_name": "DataMartIIFGp",
+
+  "sq_pr_key": "datamart_iffgp",
+  "sq_pr_name": "datamart_iffgp",
+  "sq_scan_folder": "scripts/fake_test.py",
+  "sq_binary_folder": "",
+  "sast_conf": "devsecops-config.yml",
+  "emails": "vasilyev.o.dm@omega.sbrf.ru",
+  "run_hive_script_sql" : true,
+  "sbt": {
+    "build_sbt_dir": "",
+    "build_command": "",
+    "repos_file": "",
+    "options_sbt": ""
+  },
+  "maven": {
+    "pom_path": "",
+    "set_path": "",
+    "options_mvn": ""
+  },
+  "distrib_files": [
+    {
+      "source": "ctl/ctl.yml",
+      "destination": "ctl/"
+    },
+    {
+      "source": "s2t/s2t.xlsx",
+      "destination": "s2t/"
+    },
+    {
+      "source": "sql/*",
+      "destination": "sql/"
+    },
+    {
+      "source": "sql/*",
+      "destination": "hdfs/scripts/sql"
+    },
+    {
+      "source": "configs/*",
+      "destination": "hdfs/configs/"
+    },
+    {
+      "source": "oozie/*",
+      "destination": "hdfs/oozie/"
+    },
+    {
+      "source": "scripts/*",
+      "destination": "hdfs/scripts/"
+    },
+    {
+      "source": "coverage-reports/*",
+      "destination": "hdfs/coverage-reports/"
+    }
+  ]
+}
+
+
+

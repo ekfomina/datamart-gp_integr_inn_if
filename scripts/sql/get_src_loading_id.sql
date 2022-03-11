@@ -1,0 +1,1 @@
+select max(ctl_loading_id) from {0}

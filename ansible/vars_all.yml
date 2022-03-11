@@ -1,0 +1,77 @@
+vars: &defaultMartVars
+  APP_VERSION: "01.000.00-0.2.01"
+  SPARK_VERSION: "2.11"
+  OOZIE_PATH: "/oozie-app/salesntwrk/COREDEV/"
+  OOZIE_APP_PATH: "/oozie-app/salesntwrk/COREDEV/DataMartIlFGp/oozie/workflow.xml"
+  WF_NAME: "custom_salesntwrk_gp_integr_inn_individuals_features"
+  CTL_ENTITY_ID: "926013630"
+  APP_ID: "dmrtgpinn-svd-4b87-a5c1-9049c44a6784"
+  LOGSTASH_URL: "http://127.0.0.1:44441"
+  PATH_TO_LOG_IN_HDFS: "/tmp/custom_salesntwrk_datamart_quantity_staff_delete_logs/log.log"
+  MAIN_PY: "main.py"
+  ETL_SRC_TABLE_1: "custom_salesntwrk_gp_integr.uzp_data_payroll_m"
+  ETL_SRC_DIR_1: "/data/custom/salesntwrk/gp_integr/pa/uzp_data_payroll_m/"
+  ETL_SRC_TABLE_2: "custom_salesntwrk_gp_integr.uzp_data_merch"
+  ETL_SRC_DIR_2: "/data/custom/salesntwrk/gp_integr/pa/uzp_data_merch/"
+  ETL_PA_TABLE_1: "custom_salesntwrk_ul_profile.uzp_data_payroll_m"
+  ETL_PA_DIR_1: "/data/custom/salesntwrk/ul_profile/pa/uzp_data_payroll_m/"
+  ETL_PA_TABLE_2: "custom_salesntwrk_ul_profile.uzp_data_merch"
+  ETL_PA_DIR_2: "/data/custom/salesntwrk/ul_profile/pa/uzp_data_merch/"
+
+
+stands:
+  - stand_inventory: dev
+    vars:
+      <<: *defaultMartVars
+      PROFILE: "Default"
+      YARN_QUEUE: "root.users.u_sna_s_custom_salesntwrk_ul_profile"
+      USER_NAME: "u_sna_s_custom_salesntwrk_ul_profile"
+      KERB_KEYTAB: "/keytab/u_sna_s_custom_salesntwrk_ul_profile.keytab"
+      KERB_PRINCIPAL: "u_sna_s_custom_salesntwrk_ul_profile"
+      FAKE_LOADING: "0"
+  - stand_inventory: skl_st
+    vars:
+      <<: *defaultMartVars
+      PROFILE: "Default"
+      YARN_QUEUE: "root.users.u_stsklsna_s_custom_salesntwrk_ul_profile"
+      USER_NAME: "u_stsklsna_s_custom_salesntwrk_ul_profile"
+      KERB_KEYTAB: "/keytab/u_stsklsna_s_custom_salesntwrk_ul_profile.keytab"
+      KERB_PRINCIPAL: "u_stsklsna_s_custom_salesntwrk_ul_profile"
+      FAKE_LOADING: "0"
+  - stand_inventory: ift
+    vars:
+      <<: *defaultMartVars
+      PROFILE: "Default"
+      YARN_QUEUE: "root.users.u_itsna_s_custom_salesntwrk_ul_profile"
+      USER_NAME: "u_itsna_s_custom_salesntwrk_ul_profile"
+      KERB_KEYTAB: "/keytab/u_itsna_s_custom_salesntwrk_ul_profile.keytab"
+      KERB_PRINCIPAL: "u_itsna_s_custom_salesntwrk_ul_profile"
+      FAKE_LOADING: "1"
+  - stand_inventory: uat
+    vars:
+      <<: *defaultMartVars
+      PROFILE: "Default"
+      YARN_QUEUE: "root.custom_dm.g_utdc_y_salesntwrk"
+      USER_NAME: "u_utdc_s_custom_salesntwrk_gp_integr"
+      KERB_KEYTAB: "/keytab/u_utdc_s_custom_salesntwrk_gp_integr.keytab"
+      KERB_PRINCIPAL: "u_utdc_s_custom_salesntwrk_gp_integr"
+      FAKE_LOADING: "0"
+  - stand_inventory: clatvmsna
+    vars:
+      <<: *defaultMartVars
+      PROFILE: "clatvmsna"
+      YARN_QUEUE: "root.custom_dm.g_dc_y_salesntwrk"
+      USER_NAME: "u_atdisna_s_custom_salesntwrk_ul_profile"
+      KERB_KEYTAB: "/keytab/u_atdisna_s_custom_salesntwrk_ul_profile.keytab"
+      KERB_PRINCIPAL: "u_atdisna_s_custom_salesntwrk_ul_profile"
+      FAKE_LOADING: "0"
+  - stand_inventory: clvmsna
+    vars:
+      <<: *defaultMartVars
+      PROFILE: "clvmsna"
+      YARN_QUEUE: "root.custom_dm.g_utdc_y_salesntwrk"
+      USER_NAME: "u_disna_s_custom_salesntwrk_ul_profile"
+      KERB_KEYTAB: "/keytab/u_disna_s_custom_salesntwrk_ul_profile.keytab"
+      KERB_PRINCIPAL: "u_disna_s_custom_salesntwrk_ul_profile"
+      FAKE_LOADING: "0"
+
