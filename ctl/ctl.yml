@@ -131,6 +131,9 @@ workflows:
                 name: path_to_log_in_hdfs
                 prior_value: "{{PATH_TO_LOG_IN_HDFS}}"
             - param:
+                  name: path_to_proj_hdfs
+                  prior_value: "{{PATH_TO_PROJ_HDFS}}"
+            - param:
                 name: fake_loading
                 prior_value: "{{FAKE_LOADING}}"
 

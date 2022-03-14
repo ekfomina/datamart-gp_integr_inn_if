@@ -1,6 +1,6 @@
 echo "start_bash"
 
-PATH_TO_PYTHON=/opt/cloudera/parcels/PYENV.ZNO20008661/bin/python
+
 
 # Extremely useful option allowing access to Hive Metastore from Spark 2.2
 export HADOOP_CONF_DIR=/etc/hive/conf
@@ -8,7 +8,7 @@ export HADOOP_CONF_DIR=/etc/hive/conf
 KEYTAB=$(basename $PATH_TO_KEYTAB)
 
 v_wf_path="DataMartIlFGp/"
-PATH_TO_PROJ_HDFS="$NAME_NODE$OOZIE_PATH$v_wf_path"
+
 
 echo "start get files from hdfs"
 hdfs dfs -get ${PATH_TO_PROJ_HDFS}/scripts
