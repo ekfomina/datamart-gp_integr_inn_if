@@ -9,13 +9,13 @@ def parse_arguments(parser):
                         type=int,
                         help="flag of archive loading",
                         required=True)
-    parser.add_argument("--ETL_SRC_TABLE_1",
-                        dest="ETL_SRC_TABLE_1",
+    parser.add_argument("--etl_src_table_1",
+                        dest="etl_src_table_1",
                         type=str,
                         help="path to table",
                         required=True)
-    parser.add_argument("--ETL_SRC_DIR_1",
-                        dest="ETL_SRC_DIR_1",
+    parser.add_argument("--etl_src_dir_1",
+                        dest="etl_src_dir_1",
                         type=str,
                         help="path to partition's directory",
                         required=True)
@@ -29,13 +29,13 @@ def parse_arguments(parser):
                         type=str,
                         help="path to partition's directory",
                         required=True)
-    parser.add_argument("--ETL_SRC_TABLE_2",
-                        dest="ETL_SRC_TABLE_2",
+    parser.add_argument("--etl_src_table_2",
+                        dest="etl_src_table_2",
                         type=str,
                         help="path to table",
                         required=True)
-    parser.add_argument("--ETL_SRC_DIR_2",
-                        dest="ETL_SRC_DIR_2",
+    parser.add_argument("--etl_src_dir_2",
+                        dest="etl_src_dir_2",
                         type=str,
                         help="path to partition's directory",
                         required=True)
