@@ -34,8 +34,8 @@
             <env-var>NAME_NODE=${wf:conf('nameNode')}</env-var>
             <env-var>OOZIE_PATH=${wf:conf('oozie_path')}</env-var>
             <env-var>ETL_FORCE_LOAD=${wf:conf('etl_force_load')}</env-var>
-            <env-var>ETL_SRC_TABLE_1=${wf:conf('ETL_SRC_TABLE_1')}</env-var>
-            <env-var>ETL_SRC_DIR_1=${wf:conf('ETL_SRC_DIR_1')}</env-var>
+            <env-var>ETL_SRC_TABLE_1=${wf:conf('etl_src_table_1')}</env-var>
+            <env-var>ETL_SRC_DIR_1=${wf:conf('etl_src_dir_1')}</env-var>
             <env-var>ETL_PA_TABLE_1=${wf:conf('etl_pa_table_1')}</env-var>
             <env-var>ETL_PA_DIR_1=${wf:conf('etl_pa_dir_1')}</env-var>
             <env-var>ETL_SRC_TABLE_2=${wf:conf('etl_src_table_2')}</env-var>
