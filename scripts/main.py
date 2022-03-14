@@ -60,14 +60,14 @@ if __name__ == '__main__':
     SVETL.recreate_table(spark, 'scripts/sql/ddl.sql')
 
     logger.info("START {}".format(args.etl_pa_table_1))
-    query = SVETL.get_sql_query("scripts/sql/main.sql").format(args.etl_src_table_1, args.etl_pa_table_1, src_loading_id_uzp_data_payroll_m, args.loading_id, ctl_validfrom)
+    query = SVETL.get_sql_query("scripts/sql/uzp_data_payroll_m.sql").format(args.etl_src_table_1, args.etl_pa_table_1, src_loading_id_uzp_data_payroll_m, args.loading_id, ctl_validfrom)
     logger.debug("SVETL:\n{}".format(query))
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')
 
 
     logger.info("START {}".format(args.etl_pa_table_2))
-    query = SVETL.get_sql_query("scripts/sql/main.sql").format(args.etl_src_table_2, args.etl_pa_table_2, src_loading_id_uzp_data_merch, args.loading_id, ctl_validfrom)
+    query = SVETL.get_sql_query("scripts/sql/uzp_data_merc.sql").format(args.etl_src_table_2, args.etl_pa_table_2, src_loading_id_uzp_data_merch, args.loading_id, ctl_validfrom)
     logger.debug("SVETL:\n{}".format(query))
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')
