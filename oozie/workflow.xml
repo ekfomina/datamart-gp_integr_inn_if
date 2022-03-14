@@ -38,8 +38,8 @@
             <env-var>ETL_SRC_DIR_1=${wf:conf('ETL_SRC_DIR_1')}</env-var>
             <env-var>ETL_PA_TABLE_1=${wf:conf('etl_pa_table_1')}</env-var>
             <env-var>ETL_PA_DIR_1=${wf:conf('etl_pa_dir_1')}</env-var>
-            <env-var>ETL_SRC_TABLE_2=${wf:conf('ETL_SRC_TABLE_2')}</env-var>
-            <env-var>ETL_SRC_DIR_2=${wf:conf('ETL_SRC_DIR_2')}</env-var>
+            <env-var>ETL_SRC_TABLE_2=${wf:conf('etl_src_table_2')}</env-var>
+            <env-var>ETL_SRC_DIR_2=${wf:conf('etl_src_dir_2')}</env-var>
             <env-var>ETL_PA_TABLE_2=${wf:conf('etl_pa_table_2')}</env-var>
             <env-var>ETL_PA_DIR_2=${wf:conf('etl_pa_dir_2')}</env-var>
             <env-var>FAKE_LOADING=${wf:conf('fake_loading')}</env-var>

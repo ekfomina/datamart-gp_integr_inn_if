@@ -18,7 +18,7 @@ vars: &defaultMartVars
   ETL_PA_DIR_1: "/data/custom/salesntwrk/ul_profile/pa/uzp_data_payroll_m/"
   ETL_PA_TABLE_2: "custom_salesntwrk_ul_profile.uzp_data_merch"
   ETL_PA_DIR_2: "/data/custom/salesntwrk/ul_profile/pa/uzp_data_merch/"
-  PATH_TO_PYTHON: "/opt/cloudera/parcels/PYENV.ZNO20008661/bin/python"
+  PATH_TO_PYTHON: "/opt/cloudera/parcels/PYENV.DML"
 
 
 stands:
@@ -31,6 +31,7 @@ stands:
       KERB_KEYTAB: "/keytab/u_sna_s_custom_salesntwrk_ul_profile.keytab"
       KERB_PRINCIPAL: "u_sna_s_custom_salesntwrk_ul_profile"
       FAKE_LOADING: "0"
+      PATH_TO_PYTHON: "/opt/cloudera/parcels/PYENV.ZNO20008661/bin/python"
   - stand_inventory: skl_st
     vars:
       <<: *defaultMartVars
@@ -49,6 +50,7 @@ stands:
       KERB_KEYTAB: "/keytab/u_itsna_s_custom_salesntwrk_ul_profile.keytab"
       KERB_PRINCIPAL: "u_itsna_s_custom_salesntwrk_ul_profile"
       FAKE_LOADING: "1"
+      PATH_TO_PYTHON: "/opt/cloudera/parcels/PYENV.ZNO20008661/bin/python"
   - stand_inventory: uat
     vars:
       <<: *defaultMartVars
