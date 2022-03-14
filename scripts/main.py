@@ -35,10 +35,10 @@ if __name__ == '__main__':
     spark.conf.set("spark.sql.hive.convertMetastoreParquet", False)
 
     count_in_pa_uzp_data_payroll_m = SVETL.get_stat_value_from(spark, 'scripts/sql/count.sql', args.etl_pa_table_1)
-    logger.info("count records in uzp_data_payroll_m" + str(count_in_pa_uzp_data_payroll_m))
+    logger.info("count records in uzp_data_payroll_m  " + str(count_in_pa_uzp_data_payroll_m))
 
     count_in_pa_uzp_data_merch = SVETL.get_stat_value_from(spark, 'scripts/sql/count.sql', args.etl_pa_table_2)
-    logger.info("count records in uzp_data_merch" + str(count_in_pa_uzp_data_merch))
+    logger.info("count records in uzp_data_merch  " + str(count_in_pa_uzp_data_merch))
 
 
     src_loading_id_uzp_data_payroll_m = SVETL.get_stat_value_from(spark, 'scripts/sql/get_src_loading_id.sql', args.etl_src_table_1)
@@ -60,14 +60,14 @@ if __name__ == '__main__':
     SVETL.recreate_table(spark, 'scripts/sql/ddl.sql')
 
     logger.info("START {}".format(args.etl_pa_table_1))
-    query = SVETL.get_sql_SVETL("scripts/sql/main.sql").format(args.etl_src_table_1, args.etl_pa_table_1, src_loading_id_uzp_data_payroll_m, args.loading_id, ctl_validfrom)
+    query = SVETL.get_sql_query("scripts/sql/main.sql").format(args.etl_src_table_1, args.etl_pa_table_1, src_loading_id_uzp_data_payroll_m, args.loading_id, ctl_validfrom)
     logger.debug("SVETL:\n{}".format(query))
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')
 
 
     logger.info("START {}".format(args.etl_pa_table_2))
-    query = SVETL.get_sql_SVETL("scripts/sql/main.sql").format(args.etl_src_table_2, args.etl_pa_table_2, src_loading_id_uzp_data_merch, args.loading_id, ctl_validfrom)
+    query = SVETL.get_sql_query("scripts/sql/main.sql").format(args.etl_src_table_2, args.etl_pa_table_2, src_loading_id_uzp_data_merch, args.loading_id, ctl_validfrom)
     logger.debug("SVETL:\n{}".format(query))
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')

@@ -36,6 +36,10 @@
     },
     {
       "source": "sql/*",
+      "destination": "sql/"
+    },
+    {
+      "source": "sql/*",
       "destination": "hdfs/sql/"
     },
     {
