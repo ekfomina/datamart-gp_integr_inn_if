@@ -7,7 +7,7 @@ export HADOOP_CONF_DIR=/etc/hive/conf
 
 KEYTAB=$(basename $PATH_TO_KEYTAB)
 
-v_wf_path="DataMartIlFGp/"
+
 
 
 echo "start get files from hdfs"
@@ -30,10 +30,10 @@ spark2-submit \
 --verbose \
 scripts/main.py --loading_id $LOADING_ID \
                 --etl_force_load $ETL_FORCE_LOAD \
-                --ETL_SRC_TABLE_1 $ETL_SRC_TABLE_1  \
-                --ETL_SRC_DIR_1 $ETL_SRC_DIR_1  \
-                --ETL_SRC_TABLE_2 $ETL_SRC_TABLE_2  \
-                --ETL_SRC_DIR_2 $ETL_SRC_DIR_2  \
+                --etl_src_table_1 $ETL_SRC_TABLE_1  \
+                --etl_src_dir_1 $ETL_SRC_DIR_1  \
+                --etl_src_table_2 $ETL_SRC_TABLE_2  \
+                --etl_src_dir_2 $ETL_SRC_DIR_2  \
                 --etl_pa_table_1 $ETL_PA_TABLE_1  \
                 --etl_pa_dir_1 $ETL_PA_DIR_1  \
                 --etl_pa_table_2 $ETL_PA_TABLE_2  \

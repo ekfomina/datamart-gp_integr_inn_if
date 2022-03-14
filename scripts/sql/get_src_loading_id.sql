@@ -1,1 +1,1 @@
-select max(ctl_loading_id) from {0}
+select max(loading_id) from {0}
