@@ -13,7 +13,7 @@ partitioned by (ctl_validfrom timestamp)
 stored as parquet
 LOCATION '/data/custom/salesntwrk/ul_profile/pa/uzp_data_payroll_m';
 
-MSCK REPAIR TABLE custom_salesntwrk_ul_profile.stg_uzp_data_payroll_m;
+MSCK REPAIR TABLE custom_salesntwrk_ul_profile.uzp_data_payroll_m;
 
 
 DROP TABLE IF EXISTS custom_salesntwrk_ul_profile.uzp_data_merch;
