@@ -47,6 +47,9 @@
             <env-var>LOGSTASH_URL=${wf:conf('logstash_url')}</env-var>
             <env-var>PATH_TO_LOG_IN_HDFS=${wf:conf('path_to_log_in_hdfs')}</env-var>
             <env-var>PATH_TO_PROJ_HDFS=${wf:conf('path_to_proj_hdfs')}</env-var>
+            <env-var>PATH_TO_PYTHON=${wf:conf('path_to_python')}</env-var>
+
+
 
 
             <file>wf_main.sh#wf_main.sh</file>

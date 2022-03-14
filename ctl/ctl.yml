@@ -136,5 +136,12 @@ workflows:
             - param:
                 name: fake_loading
                 prior_value: "{{FAKE_LOADING}}"
+            - param:
+                  name: path_to_python
+                  prior_value: "{{PATH_TO_PYTHON}}"
+
+
+
+
 
 
