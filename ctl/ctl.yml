@@ -98,10 +98,10 @@ workflows:
                 name: etl_force_load
                 prior_value: "0"
             - param:
-                name: ETL_SRC_TABLE_1
+                name: etl_src_table_1
                 prior_value: "{{ETL_SRC_TABLE_1}}"
             - param:
-                name: ETL_SRC_DIR_1
+                name: etl_src_dir_1
                 prior_value: "{{ETL_SRC_DIR_1}}"
             - param:
                 name: etl_pa_table_1
@@ -110,10 +110,10 @@ workflows:
                 name: etl_pa_dir_1
                 prior_value: "{{ETL_PA_DIR_1}}"
             - param:
-                name: ETL_SRC_TABLE_2
+                name: etl_src_table_2
                 prior_value: "{{ETL_SRC_TABLE_2}}"
             - param:
-                name: ETL_SRC_DIR_2
+                name: etl_src_dir_2
                 prior_value: "{{ETL_SRC_DIR_2}}"
             - param:
                 name: etl_pa_table_2
