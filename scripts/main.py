@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
 
     logger.info("START {}".format(args.etl_pa_table_2))
-    query = SVETL.get_sql_query("scripts/sql/uzp_data_merc.sql").format(args.etl_src_table_2, args.etl_pa_table_2, src_loading_id_uzp_data_merch, args.loading_id, ctl_validfrom)
+    query = SVETL.get_sql_query("scripts/sql/uzp_data_merch.sql").format(args.etl_src_table_2, args.etl_pa_table_2, src_loading_id_uzp_data_merch, args.loading_id, ctl_validfrom)
     logger.debug("SVETL:\n{}".format(query))
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')
