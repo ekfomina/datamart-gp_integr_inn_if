@@ -11,7 +11,6 @@ from utils import repartition as PART
 
 logger = logging.getLogger(__name__)
 
-
 if __name__ == '__main__':
     LOG.setup_logger("configs/logger_config.yaml")
 
@@ -40,45 +39,46 @@ if __name__ == '__main__':
     count_in_pa_uzp_data_merch = SVETL.get_stat_value_from(spark, 'scripts/sql/count.sql', args.etl_pa_table_2)
     logger.info("count records in uzp_data_merch  " + str(count_in_pa_uzp_data_merch))
 
-
-    src_loading_id_uzp_data_payroll_m = SVETL.get_stat_value_from(spark, 'scripts/sql/get_src_loading_id.sql', args.etl_src_table_1)
+    src_loading_id_uzp_data_payroll_m = SVETL.get_stat_value_from(spark, 'scripts/sql/get_src_loading_id.sql',
+                                                                  args.etl_src_table_1)
     logger.info("src loading id in " + str(args.etl_src_table_1) + "  " + str(src_loading_id_uzp_data_payroll_m))
 
-    src_loading_id_uzp_data_merch = SVETL.get_stat_value_from(spark, 'scripts/sql/get_src_loading_id.sql', args.etl_src_table_2)
+    src_loading_id_uzp_data_merch = SVETL.get_stat_value_from(spark, 'scripts/sql/get_src_loading_id.sql',
+                                                              args.etl_src_table_2)
     logger.info("src loading id in " + str(args.etl_src_table_1) + "  " + str(src_loading_id_uzp_data_merch))
-
-
-
 
     if args.etl_force_load == 1:
         logger.info("CLEAR {}".format(args.etl_pa_dir))
-        SHELL.run_cmd(['hdfs', 'dfs', '-rm', '-R', '-skipTrash', str(args.etl_pa_dir_1)+"*"])
+        SHELL.run_cmd(['hdfs', 'dfs', '-rm', '-R', '-skipTrash', str(args.etl_pa_dir_1) + "*"])
 
         logger.info("CLEAR {}".format(args.etl_pa_dir))
-        SHELL.run_cmd(['hdfs', 'dfs', '-rm', '-R', '-skipTrash', str(args.etl_pa_dir_2)+"*"])
+        SHELL.run_cmd(['hdfs', 'dfs', '-rm', '-R', '-skipTrash', str(args.etl_pa_dir_2) + "*"])
 
     SVETL.recreate_table(spark, 'scripts/sql/ddl.sql')
 
     logger.info("START {}".format(args.etl_pa_table_1))
-    query = SVETL.get_sql_query("scripts/sql/uzp_data_payroll_m.sql").format(args.etl_src_table_1, args.etl_pa_table_1, src_loading_id_uzp_data_payroll_m, args.loading_id, ctl_validfrom)
+    query = SVETL.get_sql_query("scripts/sql/uzp_data_payroll_m.sql").format(args.etl_src_table_1, args.etl_pa_table_1,
+                                                                             src_loading_id_uzp_data_payroll_m,
+                                                                             args.loading_id, ctl_validfrom)
     logger.debug("SVETL:\n{}".format(query))
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')
-
 
     logger.info("START {}".format(args.etl_pa_table_2))
-    query = SVETL.get_sql_query("scripts/sql/uzp_data_merch.sql").format(args.etl_src_table_2, args.etl_pa_table_2, src_loading_id_uzp_data_merch, args.loading_id, ctl_validfrom)
+    query = SVETL.get_sql_query("scripts/sql/uzp_data_merch.sql").format(args.etl_src_table_2, args.etl_pa_table_2,
+                                                                         src_loading_id_uzp_data_merch, args.loading_id,
+                                                                         ctl_validfrom)
     logger.debug("SVETL:\n{}".format(query))
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')
 
-    logger.info("Repart " + str(args.etl_pa_dir))
     # For interaction with partitions
     data_control = PART.PartitionController(spark)
+    logger.info("Repart " + str(args.etl_pa_dir_1))
+    data_control.repart(str(args.etl_pa_dir_1), ctl_validfrom)
 
-    data_control.repart(str(args.etl_pa_dir), ctl_validfrom)
-
-
+    logger.info("Repart " + str(args.etl_pa_dir_2))
+    data_control.repart(str(args.etl_pa_dir_2), ctl_validfrom)
 
     SVETL.recreate_table(spark, 'scripts/sql/ddl.sql')
 
@@ -87,7 +87,6 @@ if __name__ == '__main__':
 
     count_in_pa_uzp_data_merch = SVETL.get_stat_value_from(spark, 'scripts/sql/count.sql', args.etl_pa_table_2)
     logger.info("count records in uzp_data_merch after loading" + str(count_in_pa_uzp_data_merch))
-
 
     # Statistics
     ctl_url_stat = args.ctl_url + '/v1/api/statval/m'
