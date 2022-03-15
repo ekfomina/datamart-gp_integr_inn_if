@@ -7,7 +7,7 @@ from utils import args_parser as ARGS
 from utils import etl_utils as SVETL
 from utils import hdfs_shell_command as SHELL
 from utils import logging_utils as LOG
-
+from utils import repartition as PART
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     logger.info(str(args))
 
     # Getting date and time of launch (first 10 letters is report date)
-    ctl_validfrom = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    ctl_validfrom = datetime.now().strftime('%Y-%m-%d')
 
     logger.info("start spark session")
     spark = SVETL.get_spark('start custom_salesntwrk_gp_integr_inn_individuals_features' + str(args.loading_id))
@@ -72,6 +72,12 @@ if __name__ == '__main__':
     spark.sql(query)
     logger.info('SUCCESS: main sql finished')
 
+    logger.info("Repart " + str(args.etl_pa_dir))
+    # For interaction with partitions
+    data_control = PART.PartitionController(spark)
+
+    data_control.repart(str(args.etl_pa_dir), ctl_validfrom)
+
 
 
     SVETL.recreate_table(spark, 'scripts/sql/ddl.sql')
@@ -102,11 +108,11 @@ if __name__ == '__main__':
     else:
         logger.warning("NO CHANGE")
 
-    business_date = SVETL.get_stat_value_from(spark, "scripts/sql/get_business_date.sql")
+    business_date = ctl_validfrom
     ctl_stat.upload_statistic(stat_id=5, stat_value=business_date)
     logger.info("BUSINESS_DATE '{}' was published".format(business_date))
 
-    max_cdc_date = SVETL.get_stat_value_from(spark, "scripts/sql/get_max_cdc_date.sql", business_date)
+    max_cdc_date = ctl_validfrom
     ctl_stat.upload_statistic(stat_id=1, stat_value=max_cdc_date)
     logger.info("MAX_CDC_DATE '{}' was published".format(max_cdc_date))
 
@@ -114,4 +120,3 @@ if __name__ == '__main__':
                     "{0}. CHANGE = {1}. New MAX_CDC_DATE = {2}. New BUSINESS_DATE = {3}.".format(
                         applicationId, change, max_cdc_date, business_date))
     logger.info("End python")
-
