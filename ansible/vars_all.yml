@@ -18,7 +18,7 @@ vars: &defaultMartVars
   ETL_PA_DIR_1: "/data/custom/salesntwrk/ul_profile/pa/uzp_data_payroll_m/"
   ETL_PA_TABLE_2: "custom_salesntwrk_ul_profile.uzp_data_merch"
   ETL_PA_DIR_2: "/data/custom/salesntwrk/ul_profile/pa/uzp_data_merch/"
-  PATH_TO_PYTHON: "/opt/cloudera/parcels/PYENV.DML"
+  PATH_TO_PYTHON: "/opt/cloudera/parcels/PYENV.DML/bin/python"
 
 
 stands:
