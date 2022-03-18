@@ -20,7 +20,6 @@ vars: &defaultMartVars
   ETL_PA_DIR_2: "/data/custom/salesntwrk/ul_profile/pa/uzp_data_merch/"
   PATH_TO_PYTHON: "/opt/cloudera/parcels/PYENV.DML/bin/python"
 
-
 stands:
   - stand_inventory: dev
     vars:
